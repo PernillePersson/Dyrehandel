@@ -9,5 +9,7 @@ public class Vare {
         this.varebeskrivelse = varebeskrivelse;
     }
 
-
+    public String toString(){
+        return varenr + " " + varebeskrivelse;
+    }
 }

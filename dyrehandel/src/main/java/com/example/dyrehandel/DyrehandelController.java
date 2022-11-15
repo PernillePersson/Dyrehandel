@@ -41,6 +41,13 @@ public class DyrehandelController {
         varerList.getItems().add(v0.toString());
         varerList.getItems().add(v1.toString());
         varerList.getItems().add(v2.toString());
+        varerList.getItems().add(v3.toString());
+        varerList.getItems().add(v4.toString());
+        varerList.getItems().add(v5.toString());
+        varerList.getItems().add(v6.toString());
+        varerList.getItems().add(v7.toString());
+        varerList.getItems().add(v8.toString());
+        varerList.getItems().add(v9.toString());
 
     }
 
