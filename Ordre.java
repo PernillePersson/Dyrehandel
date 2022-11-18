@@ -20,6 +20,7 @@ public class Ordre {
         varer.add(v);
     }
 
+
     public String toString(){
         return ordrenr + " " + kundenavn;
     }
