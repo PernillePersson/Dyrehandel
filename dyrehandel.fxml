@@ -4,16 +4,17 @@
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dyrehandel.DyrehandelController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="236.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.dyrehandel.DyrehandelController">
    <top>
       <Pane prefHeight="200.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox spacing="10.0">
+            <HBox prefHeight="236.0" prefWidth="600.0" spacing="10.0">
                <children>
                   <VBox>
                      <children>
@@ -21,7 +22,7 @@
                         <ListView fx:id="ordrerList" onMouseClicked="#mouseListClick" prefHeight="200.0" prefWidth="200.0" />
                      </children>
                   </VBox>
-                  <VBox maxWidth="1.7976931348623157E308" prefHeight="200.0" prefWidth="100.0">
+                  <VBox maxWidth="1.7976931348623157E308" prefHeight="231.0" prefWidth="100.0">
                      <children>
                         <Label text="Bestilling" />
                         <ListView fx:id="bestillingsList" prefHeight="200.0" prefWidth="200.0" />
@@ -30,12 +31,35 @@
                   <VBox maxWidth="1.7976931348623157E308">
                      <children>
                         <Label text="Alle varer" />
-                        <ListView fx:id="varerList" prefHeight="200.0" prefWidth="200.0" />
-                        <Button fx:id="addVare" mnemonicParsing="false" text="Tilføj vare">
+                        <ListView fx:id="varerList" prefHeight="200.0" prefWidth="240.0" />
+                        <HBox prefHeight="100.0" prefWidth="240.0">
+                           <children>
+                              <TextField fx:id="nrInput" prefWidth="100.0" promptText="nr" />
+                              <TextField fx:id="vareInput" promptText="vare" />
+                              <Button mnemonicParsing="false" onAction="#addVare" prefWidth="150.0" text="Tilføj vare">
+                                 <HBox.margin>
+                                    <Insets left="2.0" right="2.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
                            <VBox.margin>
-                              <Insets top="5.0" />
+                              <Insets top="8.0" />
                            </VBox.margin>
-                        </Button>
+                        </HBox>
+                        <HBox prefHeight="100.0" prefWidth="200.0">
+                           <children>
+                              <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Tilføj valgt vare til ordre?">
+                                 <HBox.margin>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </HBox.margin>
+                              </Label>
+                              <Button mnemonicParsing="false" onAction="#addToOrdre" text="Føj til ordre">
+                                 <HBox.margin>
+                                    <Insets bottom="8.0" left="8.0" right="8.0" top="8.0" />
+                                 </HBox.margin>
+                              </Button>
+                           </children>
+                        </HBox>
                      </children>
                   </VBox>
                </children>
