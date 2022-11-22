@@ -38,6 +38,14 @@ public class DyrehandelController {
     @FXML
     private TextField vareInput, nrInput;
 
+    @FXML
+    private ListView bestillingsList = new ListView();
+
+    @FXML
+    private ListView ordrerList = new ListView();
+
+    @FXML
+    private ListView varerList = new ListView();
 
     @FXML
     void addVare(ActionEvent event) {
@@ -50,20 +58,17 @@ public class DyrehandelController {
         }
     }
 
+    //Tilføj en vare til en bestilling
     @FXML
     void addToOrdre(ActionEvent event) {
-
+        Ordre ordre = (Ordre) ordrerList.getSelectionModel().getSelectedItem();
+        Vare vare = (Vare) varerList.getSelectionModel().getSelectedItem();
+        ordre.tilknytVare(vare);
+        bestillingsList.getItems().add(vare.toString());
     }
 
-    @FXML
-    private ListView bestillingsList = new ListView();
 
-    @FXML
-    private ListView ordrerList = new ListView();
-
-    @FXML
-    private ListView varerList = new ListView();
-
+    //Vis bestillinger fra ordre i bestillingslisten
     @FXML
     private void mouseListClick(MouseEvent e)
     {
@@ -93,16 +98,16 @@ public class DyrehandelController {
         ordrerList.getItems().add(o3);
         ordrerList.getItems().add(o4);
 
-        varerList.getItems().add(v0.toString());
-        varerList.getItems().add(v1.toString());
-        varerList.getItems().add(v2.toString());
-        varerList.getItems().add(v3.toString());
-        varerList.getItems().add(v4.toString());
-        varerList.getItems().add(v5.toString());
-        varerList.getItems().add(v6.toString());
-        varerList.getItems().add(v7.toString());
-        varerList.getItems().add(v8.toString());
-        varerList.getItems().add(v9.toString());
+        varerList.getItems().add(v0);
+        varerList.getItems().add(v1);
+        varerList.getItems().add(v2);
+        varerList.getItems().add(v3);
+        varerList.getItems().add(v4);
+        varerList.getItems().add(v5);
+        varerList.getItems().add(v6);
+        varerList.getItems().add(v7);
+        varerList.getItems().add(v8);
+        varerList.getItems().add(v9);
 
         o0.tilknytVare(v0);
         o0.tilknytVare(v7);
