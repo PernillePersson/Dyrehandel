@@ -3,15 +3,19 @@ package com.example.dyrehandel;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.VBox;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Optional;
 
 public class DyrehandelController {
 
@@ -32,8 +36,6 @@ public class DyrehandelController {
     Vare v8 = new Vare(9, "terrarium");
     Vare v9 = new Vare(10, "kødben");
 
-    @FXML
-    private ListView ordreList;
 
     @FXML
     private TextField vareInput, nrInput;
@@ -47,6 +49,8 @@ public class DyrehandelController {
     @FXML
     private ListView varerList = new ListView();
 
+
+    //Tilhører Varer
     @FXML
     void addVare(ActionEvent event) {
         try{
@@ -88,6 +92,56 @@ public class DyrehandelController {
                 }
 
             }
+    }
+
+    //Tilhører Ordre
+
+    @FXML
+    void OpenOrdreDialog(ActionEvent event) throws IOException {
+
+        Dialog<ButtonType> dialog = new Dialog();
+
+        // Her sættes vinduet op
+        dialog.setTitle("Opret ny ordre");
+        dialog.getDialogPane().getButtonTypes().addAll(ButtonType.OK, ButtonType.CANCEL);
+        TextField ordreNrInput = new TextField();
+        ordreNrInput.setPromptText("Ordre Nr");
+        TextField kundenavnInput = new TextField();
+        kundenavnInput.setPromptText("Kundenavn");
+        TextField datoInput = new TextField();
+        datoInput.setPromptText("Dato");
+        HBox inputBox = new HBox(ordreNrInput, kundenavnInput, datoInput);
+        inputBox.setSpacing(8);
+        Label infoLabel = new Label("Indsæt oplysninger om ny ordre");
+        VBox opsæt = new VBox(infoLabel, inputBox);
+        opsæt.setSpacing(16);
+        dialog.getDialogPane().setContent(opsæt);
+
+        // Her afsluttes dialogen med at man kan trykke på OK
+        Optional<ButtonType> knap = dialog.showAndWait();
+        // Derefter kan vi henter felternes indhold ud og gøre hvad der skal gøres...
+        if (knap.get() == ButtonType.OK)
+            try{
+                Ordre ordre = new Ordre(Integer.parseInt(ordreNrInput.getText()),kundenavnInput.getText(),datoInput.getText());
+                ordrerList.getItems().add(ordre);
+                ordrerList.scrollTo(ordrerList.getItems().size()-1);
+            } catch (Exception e){
+                System.err.println("Noget gik galt, tjek om der er insat et valid ordrenr");
+                System.err.println("Fejl: " + e.getMessage());
+            }
+
+    }
+
+    //Tilhører Ordre
+    @FXML
+    void sletOrdre(ActionEvent event) {
+        // Finder selected item i ordrerList og fjerner det
+        try{
+            ordrerList.getItems().remove(ordrerList.getSelectionModel().getSelectedItem());
+        }catch (Exception e){
+            System.out.println("Vælg en ordre for at slette den");
+        }
+
     }
 
     public void initialize() {
